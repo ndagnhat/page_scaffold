@@ -125,22 +125,22 @@ class _PageScaffoldState extends State<PageScaffold> {
   }
 
   Widget _buildBody(BuildContext context, _ScreenType screenType) {
-    if (screenType == _ScreenType.small) {
-      return Row(
-        children: [
-          _buildLeftNavigationBar(context),
-          const VerticalDivider(
-            width: 1,
-            thickness: 1,
-          ),
-          Expanded(
-            child: _buildPages(context),
-          ),
-        ],
-      );
-    } else {
-      return _buildPages(context);
-    }
+    return Row(
+      children: [
+        ...(screenType == _ScreenType.small)
+            ? []
+            : [
+                _buildLeftNavigationBar(context),
+                const VerticalDivider(
+                  width: 1,
+                  thickness: 1,
+                )
+              ],
+        Expanded(
+          child: _buildPages(context),
+        ),
+      ],
+    );
   }
 }
 
